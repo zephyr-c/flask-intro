@@ -80,13 +80,13 @@ def diss_person():
 <!doctype html>
     <html>
       <head>
-        <title>A Compliment</title>
+        <title>Not A Compliment</title>
       </head>
       <body>
        JUST KIDDING, YOU ARE {}!!!
       </body>
     </html>
-    """.format(insult)
+    """.format(insult.upper())
 
 @app.route("/greet")
 def greet_person():
