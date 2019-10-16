@@ -13,6 +13,9 @@ AWESOMENESS = [
     'oh-so-not-meh', 'brilliant', 'ducky', 'coolio', 'incredible',
     'wonderful', 'smashing', 'lovely']
 
+INSULTS = [
+    'dirty', 'smelly', 'out-of-luck', 'lame', 'sad excuse for a human being', 
+    'awful', 'terrible', 'absolutely gut-wrenching', 'smelly like a bad fart']
 
 @app.route("/")
 def start_here():
@@ -46,8 +49,8 @@ def say_hello():
       <body><center>
         <h1>Hi There!</h1>
         <form action="/greet">
-          What's your name? <input type="text" name="person">
-          <br>Choose your compliment below!
+         <p> What's your name? <input type="text" name="person"></p>
+          <p>Choose your compliment below!
           <select name="compliment">
           <option value="awesome">Awesome</option>
           <option value="terrific">Terrific</option>
@@ -62,13 +65,28 @@ def say_hello():
           <option value="incredible">Incredible</option>
           <option value="wonderful">Wonderful</option>
           <option value="smashing">Smashing</option>
-          <option value="lovely">Lovely</option>
+          <option value="lovely">Lovely</option></p>
           <input type="submit" value="Submit">
         </form>
       </center></body>
     </html>
     """
 
+@app.route("/diss")
+def diss_person():
+  insult = choice(INSULTS) 
+
+  return """
+<!doctype html>
+    <html>
+      <head>
+        <title>A Compliment</title>
+      </head>
+      <body>
+       JUST KIDDING, YOU ARE {}!!!
+      </body>
+    </html>
+    """.format(insult)
 
 @app.route("/greet")
 def greet_person():
@@ -87,6 +105,8 @@ def greet_person():
       </head>
       <body>
         Hi, {}! I think you're {}!
+        <br>
+        <a href='http://localhost:5000/diss'>Click Me for more compliments!</a>
       </body>
     </html>
     """.format(player, compliment)
