@@ -38,9 +38,16 @@ def start_here():
 
 @app.route("/hello")
 def say_hello():
-    """Say hello and prompt for user's name."""
+  """Say hello and prompt for user's name."""
+  options = []
+  insult_options = []
+  for item in AWESOMENESS:
+    options.append(f'<option value="{item}">{item.upper()}</option>')
 
-    return """
+  for item in INSULTS:
+    insult_options.append(f'<option value="{item}">{item.upper()}</option>')
+
+  return """
     <!doctype html>
     <html>
       <head>
@@ -52,25 +59,12 @@ def say_hello():
          <p> What's your name? <input type="text" name="person"></p>
           <p>Choose your compliment below!
           <select name="compliment">
-          <option value="awesome">Awesome</option>
-          <option value="terrific">Terrific</option>
-          <option value="fantastic">Fantastic</option>
-          <option value="neato">Neato</option>
-          <option value="fantabulous">Fantabulous</option>
-          <option value="wowza">Wowza</option>
-          <option value="oh-so-not-meh">Oh So Not Meh</option>
-          <option value="brilliant">Brilliant</option>
-          <option value="ducky">Ducky</option>
-          <option value="coolio">Coolio</option>
-          <option value="incredible">Incredible</option>
-          <option value="wonderful">Wonderful</option>
-          <option value="smashing">Smashing</option>
-          <option value="lovely">Lovely</option></p>
+          {}
           <input type="submit" value="Submit">
         </form>
       </center></body>
     </html>
-    """
+    """.format("".join(options))
 
 @app.route("/diss")
 def diss_person():
