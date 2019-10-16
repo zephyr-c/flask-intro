@@ -42,7 +42,7 @@ def say_hello():
   options = []
   insult_options = []
   for item in AWESOMENESS:
-    options.append(f'<option value="{item}">{item.upper()}</option>')
+    options.append(f'<option value="{item}">{item.capitalize()}</option>')
 
   for item in INSULTS:
     insult_options.append(f'<option value="{item}">{item.upper()}</option>')
